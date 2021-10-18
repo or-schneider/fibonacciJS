@@ -1,7 +1,7 @@
 let fibonacciN = 13;
 
 
-function fibbonaci(n){
+function fibonacci(n){
     
     let sum = 0;
     
@@ -24,7 +24,7 @@ function fibbonaci(n){
     return sum;
 }
 
-let fibonnachiResult = fibbonaci(fibonacciN);
+let fibonacciResult = fibonacci(fibonacciN);
 
-let fibonnaciResultNode = document.getElementById("fibonnaciResult");
-fibonnaciResultNode.innerHTML = `The Fibonacci of ${fibonacciN} is ${fibonnachiResult}`;
+let fibonacciResultNode = document.getElementById("fibonacciResult");
+fibonacciResultNode.innerHTML = `The Fibonacci of ${fibonacciN} is ${fibonacciResult}`;
