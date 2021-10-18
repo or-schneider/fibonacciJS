@@ -1,6 +1,3 @@
-let fibonacciN = 13;
-
-
 function fibonacci(n){
     
     let sum = 0;
@@ -23,8 +20,3 @@ function fibonacci(n){
     }
     return sum;
 }
-
-let fibonacciResult = fibonacci(fibonacciN);
-
-let fibonacciResultNode = document.getElementById("fibonacciResult");
-fibonacciResultNode.innerHTML = `The Fibonacci of ${fibonacciN} is ${fibonacciResult}`;
