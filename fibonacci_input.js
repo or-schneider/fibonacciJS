@@ -5,7 +5,7 @@ fibonacciInputButton.addEventListener('click',submitFibonacciInput)
 function submitFibonacciInput(e){
     let userInput = fibonacciInputNode.value;
     let result = fibonacci(userInput);
-    updateFibonacciDisplay(userInput, result);
+    updateFibonacciDisplay(result);
 
     e.preventDefault();
 }
