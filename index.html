@@ -17,12 +17,32 @@
   <body>
     <div class="container">
       <h1>Fibonacci Calculator</h1>
-
-      <form action="">
-        <label for="fibonacci-input">The Fibonacci Of </label>
-        <input type="number" name="fibonacci-input" id="fibonacciInput" />
-        <button type="submit" id="fibonacciInputButton">Is</button>
-        <p id="fibonacciResult"></p>
+      <form
+        class="d-flex align-items-baseline mt-4"
+        style="gap: 12px"
+        action=""
+      >
+        <label class="col-form-label" for="fibonacci-input"
+          >The Fibonacci Of
+        </label>
+        <input
+          type="number"
+          name="fibonacci-input"
+          id="fibonacciInput"
+          class="form-control form-control-sm"
+          style="width: 10%"
+          min="1"
+          max="50"
+        />
+        <button
+          class="col-sm-1 btn btn-primary btn-sm"
+          type="submit"
+          id="fibonacciInputButton"
+          style="width: 5%"
+        >
+          Is
+        </button>
+        <h4 id="fibonacciResult" class="text-decoration-underline">5</h4>
       </form>
     </div>
 
