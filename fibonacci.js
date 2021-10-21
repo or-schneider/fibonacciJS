@@ -14,3 +14,13 @@ function calculateFibonacci(n){
     }
     return sum;
 }
+function calculateFibonacciAtServerSide(n){
+    
+    const url = `http://localhost:5050/fibonacci/${n}`
+    
+    fetch(url)
+  .then(response => response.json())
+  .then(data =>{
+      updateFibonacciDisplay(data["result"]);
+    });
+}
