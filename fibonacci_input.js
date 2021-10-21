@@ -9,7 +9,7 @@ function submitFibonacciInput(e){
 
         return;
     }
-    let result = fibonacci(userInput);
+    let result = calculateFibonacci(userInput);
     updateFibonacciDisplay(result);
     e.preventDefault();
 
