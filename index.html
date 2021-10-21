@@ -15,34 +15,46 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container pt-5">
       <h1>Fibonacci Calculator</h1>
       <form
-        class="d-flex align-items-baseline mt-4"
+        class="d-flex align-items-center mt-4"
         style="gap: 12px"
         action=""
+        novalidate
       >
-        <label class="col-form-label" for="fibonacci-input"
+      <div class="d-flex flex-column">
+
+        <div class="d-flex align-items-center position" style="gap: 12px">
+          <label class="h5 fw-normal mb-0" for="fibonacci-input"
           >The Fibonacci Of
         </label>
+        
         <input
-          type="number"
-          name="fibonacci-input"
-          id="fibonacciInput"
-          class="form-control form-control-sm"
-          style="width: 10%"
-          min="1"
-          max="50"
-        />
+        type="number"
+        name="fibonacci-input"
+        id="fibonacciInput"
+        class="form-control form-control-sm"
+        style="max-width: 72px"
+        min="1"
+        max="50"
+        required
+        >
+      </div>
+      
+    </div>
+
         <button
           class="col-sm-1 btn btn-primary btn-sm"
           type="submit"
           id="fibonacciInputButton"
-          style="width: 5%"
+          style="max-width: 36px"
+          required
         >
           Is
         </button>
-        <h4 id="fibonacciResult" class="text-decoration-underline">5</h4>
+        <div id="fibonacciResult" class="text-decoration-underline fw-bold h5 mb-0">5</div>
+        </div>
       </form>
     </div>
 
