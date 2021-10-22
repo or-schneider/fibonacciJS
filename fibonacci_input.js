@@ -9,11 +9,11 @@ function submitFibonacciInput(e){
 
         return;
     }
-    calculateFibonacciAtServerSide(userInput);
+    calculateFibonacciAtServerSide(userInput, updateFibonacciDisplay);
 
     // let result = calculateFibonacci(userInput);
     // updateFibonacciDisplay(result);
-    
+
     e.preventDefault();
 
 }

@@ -14,13 +14,26 @@ function calculateFibonacci(n){
     }
     return sum;
 }
-function calculateFibonacciAtServerSide(n){
+function calculateFibonacciAtServerSide(n, onComplete){
     
     const url = `http://localhost:5050/fibonacci/${n}`
-    
+    let isResponseText = false;
+
     fetch(url)
-  .then(response => response.json())
-  .then(data =>{
-      updateFibonacciDisplay(data["result"]);
+    .then(response => {
+      if(!response.ok)
+      {
+          isResponseText = true;
+          return response.text();
+      }
+      return response.json()})
+    .then(data =>{
+        let serverResult;
+        if(isResponseText)
+            serverResult = data;
+        else  
+            serverResult = data["result"];
+
+        onComplete(serverResult);
     });
 }

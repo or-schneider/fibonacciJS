@@ -1,3 +1,4 @@
 [submodule "fibonacci-server"]
 	path = fibonacci-server
 	url = https://github.com/israeltechchallenge/fibonacci-server
+	ignore = dirty
