@@ -23,26 +23,24 @@
         action=""
         novalidate
       >
-      <div class="d-flex flex-column">
+        <div class="d-flex flex-column">
+          <div class="d-flex align-items-center position" style="gap: 12px">
+            <label class="h5 fw-normal mb-0" for="fibonacci-input"
+              >The Fibonacci Of
+            </label>
 
-        <div class="d-flex align-items-center position" style="gap: 12px">
-          <label class="h5 fw-normal mb-0" for="fibonacci-input"
-          >The Fibonacci Of
-        </label>
-        
-        <input
-        type="number"
-        name="fibonacci-input"
-        id="fibonacciInput"
-        class="form-control form-control-sm"
-        style="max-width: 72px"
-        min="1"
-        max="50"
-        required
-        >
-      </div>
-      
-    </div>
+            <input
+              type="number"
+              name="fibonacci-input"
+              id="fibonacciInput"
+              class="form-control form-control-sm"
+              style="max-width: 72px"
+              min="1"
+              max="50"
+              required
+            />
+          </div>
+        </div>
 
         <button
           class="col-sm-1 btn btn-primary btn-sm"
@@ -53,8 +51,17 @@
         >
           Is
         </button>
-        <div id="fibonacciResult" class="text-decoration-underline fw-bold h5 mb-0"></div>
+        <div
+          id="fibonacciResultSpinner"
+          class="spinner-border d-none"
+          role="status"
+        >
+          <span class="visually-hidden">Loading...</span>
         </div>
+        <div
+          id="fibonacciResult"
+          class="text-decoration-underline fw-bold h5 mb-0"
+        ></div>
       </form>
     </div>
 
@@ -64,9 +71,9 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="./spinner.js"></script>
     <script src="./fibonacci.js"></script>
     <script src="./fibonacci_display.js"></script>
     <script src="./fibonacci_input.js"></script>
-    <!-- <script src="./fibonacci.js"></script> -->
   </body>
 </html>
