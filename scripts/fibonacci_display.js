@@ -11,9 +11,19 @@ function updateFibonacciDisplay(fibonacciResult){
     fibonacciResultNode.innerHTML = fibonacciResult;
 
 }
+
+
+
+
+let fibonacciResultsSpinner = document.getElementById("fibonacciResultsSpinner");
+
+function showFibonacciResultSpinner(){
+    showSpinner(fibonacciResultsSpinner);
+}
 let resultsListDisplay = document.getElementById("resultsList");
 
 function refreshFibonacciResultsDisplay(){
+    showFibonacciResultSpinner();
     fetchFibonacciResults(updateFibonacciResultsDisplay);
 }
 function fibonacciResultSortComparer(first, second){
@@ -42,6 +52,8 @@ function updateFibonacciResultsDisplay(fibonacciResultsData){
         resultsListDisplay.prepend(resultsEntryNode);
         
     }
+    hideSpinner(fibonacciResultsSpinner);
+
 }
 function generateFibonacciResultEntryNode(number,result,dateCreated){
     let resultsEntryNode = document.createElement("div");
