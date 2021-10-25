@@ -34,7 +34,7 @@ function calculateFibonacciComplete(result){
 }
 let fibonacciInputError = document.getElementById("fibonacciInputError");
 function clearFibonacciInputError(){
-    fibonacciInputError.textContent = "";
+    fibonacciInputError.textContent = "&#8203;";
     fibonacciInputError.classList.add("invisible");
     fibonacciInputNode.classList.remove("border-danger");
 
