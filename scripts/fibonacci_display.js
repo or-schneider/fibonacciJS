@@ -18,9 +18,16 @@ function refreshFibonacciResultsDisplay(){
 }
 function updateFibonacciResultsDisplay(fibonacciResultsData){
     
-    console.log(fibonacciResultsData);
-    let resultsEntryNode = generateFibonacciResultEntryNode(2,1,"Some date");
-    resultsListDisplay.appendChild(resultsEntryNode);
+    fibonacciResultsData = fibonacciResultsData["results"];
+
+    for (let i = 0; i < 5; i++) {
+        const fibonacciResultData = fibonacciResultsData[i];
+        let resultsEntryNode = generateFibonacciResultEntryNode(fibonacciResultData["number"],
+                                                                fibonacciResultData["result"],
+                                                                fibonacciResultData["createdDate"]);
+        resultsListDisplay.appendChild(resultsEntryNode);
+    }
+    
 }
 function generateFibonacciResultEntryNode(number,result,dateCreated){
     let resultsEntryNode = document.createElement("div");
