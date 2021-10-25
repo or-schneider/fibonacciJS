@@ -15,64 +15,84 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="container pt-5">
-      <h1>Fibonacci Calculator</h1>
-      <form
-        class="d-flex align-items-start mt-4"
-        style="gap: 12px"
-        action=""
-        novalidate
-      >
-        <div class="d-flex flex-column align-items-end" style="gap: 6px">
-          <div class="d-flex align-items-center position" style="gap: 12px">
-            <label class="h5 fw-normal mb-0" for="fibonacci-input"
-              >The Fibonacci Of
-            </label>
+    <div class="container d-flex pt-5 flex-column align-items-center">
+      <div class="flex-column align-items-start">
+        <h1>Fibonacci Calculator</h1>
+        <form
+          class="d-flex align-items-start mt-4"
+          style="gap: 12px"
+          action=""
+          novalidate
+        >
+          <div class="d-flex flex-column align-items-end" style="gap: 6px">
+            <div class="d-flex align-items-center position" style="gap: 12px">
+              <label class="h5 fw-normal mb-0" for="fibonacci-input"
+                >The Fibonacci Of
+              </label>
 
-            <input
-              type="number"
-              name="fibonacci-input"
-              id="fibonacciInput"
-              class="form-control form-control-sm"
-              style="max-width: 72px"
-              min="1"
-              max="50"
-              required
-            />
+              <input
+                type="number"
+                name="fibonacci-input"
+                id="fibonacciInput"
+                class="form-control form-control-sm"
+                style="max-width: 72px"
+                min="1"
+                max="50"
+                required
+              />
+            </div>
+            <div
+              id="fibonacciInputError"
+              class="alert alert-danger p-1 invisible"
+            >
+              <!-- Can't be larger than 50 -->
+            </div>
+          </div>
+
+          <button
+            class="col-sm-1 btn btn-primary btn-sm"
+            type="submit"
+            id="fibonacciInputButton"
+            style="max-width: 36px"
+            required
+          >
+            Is
+          </button>
+          <div
+            id="fibonacciResultSpinner"
+            class="spinner-border d-none"
+            role="status"
+          >
+            <span class="visually-hidden">Loading...</span>
           </div>
           <div
-            id="fibonacciInputError"
-            class="alert alert-danger p-1 invisible"
+            id="fibonacciResult"
+            class="text-decoration-underline fw-bold h5 mb-0"
+          ></div>
+        </form>
+        <div class="d-flex flex-column align-items-start">
+          <div
+            class="results-header d-flex align-items-center mb-5 mt-5"
+            style="gap: 12px"
           >
-            <!-- Can't be larger than 50 -->
+            <h1 class="results">Results</h1>
+            <div
+              id="fibonacciResultsSpinner"
+              class="spinner-border"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
           </div>
-        </div>
-
-        <button
-          class="col-sm-1 btn btn-primary btn-sm"
-          type="submit"
-          id="fibonacciInputButton"
-          style="max-width: 36px"
-          required
-        >
-          Is
-        </button>
-        <div
-          id="fibonacciResultSpinner"
-          class="spinner-border d-none"
-          role="status"
-        >
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <div
-          id="fibonacciResult"
-          class="text-decoration-underline fw-bold h5 mb-0"
-        ></div>
-      </form>
-      <div class="results-header d-flex align-items-center" style="gap: 12px">
-        <h1 class="results">Results</h1>
-        <div id="fibonacciResultsSpinner" class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+          <div class="results-list">
+            <div class="result-entry border-bottom border-dark pb-2">
+              The Fibonacci Of <span class="number fw-bold">8</span> is
+              <span class="result fw-bold">21</span>. Calculated at:
+              <span class="created-date">
+                Thu Feb 2 2020 10:33:24 GMT+0200 (Israel Standard Time)
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
