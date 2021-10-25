@@ -22,12 +22,16 @@ function submitFibonacciInput(e){
     }
     clearFibonacciInputError();
     showFibonacciResultSpinner();
-    calculateFibonacciAtServerSide(userInput, updateFibonacciDisplay);
+    calculateFibonacciAtServerSide(userInput, calculateFibonacciComplete);
 
+    
     // let result = calculateFibonacci(userInput);
     // updateFibonacciDisplay(result);
 }
-
+function calculateFibonacciComplete(result){
+    updateFibonacciDisplay(result);
+    refreshFibonacciResultsDisplay();
+}
 let fibonacciInputError = document.getElementById("fibonacciInputError");
 function clearFibonacciInputError(){
     fibonacciInputError.textContent = "";
