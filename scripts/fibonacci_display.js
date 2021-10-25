@@ -17,13 +17,13 @@ function updateFibonacciDisplay(fibonacciResult){
 
 let fibonacciResultsSpinner = document.getElementById("fibonacciResultsSpinner");
 
-function showFibonacciResultSpinner(){
+function showFibonacciResultsSpinner(){
     showSpinner(fibonacciResultsSpinner);
 }
 let resultsListDisplay = document.getElementById("resultsList");
 
 function refreshFibonacciResultsDisplay(){
-    showFibonacciResultSpinner();
+    showFibonacciResultsSpinner();
     fetchFibonacciResults(updateFibonacciResultsDisplay);
 }
 function fibonacciResultSortComparer(first, second){
