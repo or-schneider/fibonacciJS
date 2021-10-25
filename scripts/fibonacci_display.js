@@ -16,18 +16,32 @@ let resultsListDisplay = document.getElementById("resultsList");
 function refreshFibonacciResultsDisplay(){
     fetchFibonacciResults(updateFibonacciResultsDisplay);
 }
+function fibonacciResultSortComparer(first, second){
+    if(first["createdDate"]<second["createdDate"])
+        return -1;
+    if(first["createdDate"]>second["createdDate"])
+        return 1;
+    if(first["createdDate"]==second["createdDate"])
+        return 0;
+}
+let lastFetchedResultIndex = 0;
 function updateFibonacciResultsDisplay(fibonacciResultsData){
     
     fibonacciResultsData = fibonacciResultsData["results"];
+    fibonacciResultsData.sort(fibonacciResultSortComparer);
+    // fibonacciResultsData.reverse();
 
-    for (let i = 0; i < 5; i++) {
-        const fibonacciResultData = fibonacciResultsData[i];
+    for (lastFetchedResultIndex; lastFetchedResultIndex < fibonacciResultsData.length; lastFetchedResultIndex++) {
+        const fibonacciResultData = fibonacciResultsData[lastFetchedResultIndex];
+
+        var createdDate = new Date(fibonacciResultData["createdDate"]);
+
         let resultsEntryNode = generateFibonacciResultEntryNode(fibonacciResultData["number"],
                                                                 fibonacciResultData["result"],
-                                                                fibonacciResultData["createdDate"]);
-        resultsListDisplay.appendChild(resultsEntryNode);
+                                                                createdDate);
+        resultsListDisplay.prepend(resultsEntryNode);
+        
     }
-    
 }
 function generateFibonacciResultEntryNode(number,result,dateCreated){
     let resultsEntryNode = document.createElement("div");
@@ -54,3 +68,4 @@ function generateFibonacciResultEntryNode(number,result,dateCreated){
     resultsEntryNode.appendChild(createdDateNode);
     return resultsEntryNode;
 }
+refreshFibonacciResultsDisplay();
