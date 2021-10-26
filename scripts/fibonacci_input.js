@@ -4,6 +4,9 @@ const fibonacciInputMin = 1;
 let fibonacciInputNode = document.getElementById("fibonacciInput");
 let fibonacciInputButton = document.getElementById("fibonacciInputButton");
 
+let fibonacciServerCalculationCheckBox = document.getElementById("fibonacciServerCalculationCheckBox");
+
+
 fibonacciInputButton.addEventListener('click',submitFibonacciInput)
 function submitFibonacciInput(e){
 
@@ -21,12 +24,19 @@ function submitFibonacciInput(e){
         return;
     }
     clearFibonacciInputError();
-    showFibonacciResultSpinner();
-    calculateFibonacciAtServerSide(userInput, calculateFibonacciComplete);
+
+    if(fibonacciServerCalculationCheckBox.checked){
+
+        showFibonacciResultSpinner();
+        calculateFibonacciAtServerSide(userInput, calculateFibonacciComplete);
+    }
+    else{
+        let result = calculateFibonacci(userInput);
+        updateFibonacciDisplay(result);
+        
+    }
 
     
-    // let result = calculateFibonacci(userInput);
-    // updateFibonacciDisplay(result);
 }
 function calculateFibonacciComplete(result){
     updateFibonacciDisplay(result);
