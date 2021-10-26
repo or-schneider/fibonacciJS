@@ -39,10 +39,11 @@ function updateFibonacciResultsDisplay(fibonacciResultsData){
 
 }
 function generateFibonacciResultEntryNode(number,result,dateCreated){
-    let resultsEntryNode = document.createElement("div");
+    let resultsEntryNode = document.createElement("li");
     resultsEntryNode.classList.add("border-bottom");
     resultsEntryNode.classList.add("border-dark");
     resultsEntryNode.classList.add("pb-2");
+    resultsEntryNode.classList.add("pt-2");
       
     let numberNode = document.createElement("span");
     numberNode.classList.add("fw-bold");

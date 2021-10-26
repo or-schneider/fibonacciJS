@@ -12,21 +12,31 @@
       crossorigin="anonymous"
     />
 
-    <title>Document</title>
+    <title>Fibonacci Calculator</title>
   </head>
   <body>
-    <div class="container d-flex flex-column p-5">
+    <div class="container d-flex flex-column px-4 py-5 p-sm-5">
+      <h1 class="display-4 fw-normal align-self-center align-self-sm-start">
+        Fibonacci Calculator
+      </h1>
       <div class="flex-column align-items-start">
-        <h1>Fibonacci Calculator</h1>
         <form
-          class="d-flex align-items-start mt-4"
+          class="
+            d-flex
+            flex-column flex-sm-row
+            align-items-center align-items-sm-start
+            mt-4
+          "
           style="gap: 12px"
           action=""
           novalidate
         >
           <div class="d-flex flex-column align-items-end" style="gap: 6px">
-            <div class="d-flex align-items-center position" style="gap: 12px">
-              <label class="h5 fw-normal mb-0 w-100" for="fibonacci-input"
+            <div
+              class="d-flex flex-column flex-sm-row align-items-center"
+              style="gap: 12px"
+            >
+              <label class="h5 fw-normal mb-0" for="fibonacci-input"
                 >The Fibonacci Of
               </label>
 
@@ -35,14 +45,20 @@
                 name="fibonacci-input"
                 id="fibonacciInput"
                 class="form-control"
-                style="min-width: 170px"
+                style="width: 170px"
                 min="1"
                 max="50"
                 required
               />
             </div>
             <div
-              class="d-flex align-items-center justify-content-between w-100"
+              class="
+                d-flex
+                flex-column flex-sm-row
+                align-items-start align-items-sm-center
+                justify-content-between
+                w-100
+              "
             >
               <div class="form-check">
                 <input
@@ -68,34 +84,59 @@
               </div>
             </div>
           </div>
-          <div class="d-flex align-items-start" style="gap: 18px">
+          <div
+            class="d-flex flex-column flex-sm-row align-items-center"
+            style="gap: 24px"
+          >
             <button
-              class="col-sm-1 btn btn-primary btn flex-grow-1"
+              class="col-sm-1 btn btn-primary swatch-cyan btn flex-grow-1"
               type="submit"
               id="fibonacciInputButton"
               required
             >
               Is
             </button>
-            <div
-              id="fibonacciResultSpinner"
-              class="spinner-border d-none"
-              role="status"
-            >
-              <span class="visually-hidden">Loading...</span>
+            <div class="result-container position-relative">
+              <div
+                class="
+                  result-spinner-container
+                  position-absolute
+                  top-50
+                  start-50
+                  translate-middle
+                  d-flex
+                "
+              >
+                <div
+                  id="fibonacciResultSpinner"
+                  class="spinner-border d-none"
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <p
+                id="fibonacciResult"
+                class="
+                  text-decoration-underline
+                  fw-bold
+                  h5
+                  align-self-center
+                  m-0
+                  invisible
+                "
+              >
+                &#8203; &nbsp;
+              </p>
             </div>
-            <div
-              id="fibonacciResult"
-              class="text-decoration-underline fw-bold h5 align-self-center m-0"
-            ></div>
           </div>
         </form>
         <div class="d-flex flex-column align-items-start">
           <div
-            class="results-header d-flex align-items-center mb-5 mt-5"
+            class="results-header d-flex align-items-center mb-4 mt-4"
             style="gap: 12px"
           >
-            <h1 class="results">Results</h1>
+            <h2 class="results fw-normal display-6">Results</h2>
             <div
               id="fibonacciResultsSpinner"
               class="spinner-border"
@@ -104,7 +145,7 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-          <div id="resultsList" class="results-list"></div>
+          <ul id="resultsList" class="results-list list-unstyled"></ul>
         </div>
       </div>
     </div>
