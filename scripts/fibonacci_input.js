@@ -31,7 +31,7 @@ function submitFibonacciInput(e){
         calculateFibonacciAtServerSide(userInput, calculateFibonacciAtServerComplete);
     }
     else{
-        let result = calculateFibonacci(userInput);
+        let result = calculateFibonacciRecursive(userInput);
         updateFibonacciDisplay(result);
         
     }

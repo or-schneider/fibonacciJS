@@ -12,7 +12,6 @@ function updateFibonacciDisplay(fibonacciResult, error){
     fibonacciResultNode.classList.remove("invisible");
 
     let displayText;
-        console.log(error);
 
     if(error){
         displayText =`Server Error: ${error}`;
