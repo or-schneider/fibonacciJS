@@ -28,7 +28,7 @@ function submitFibonacciInput(e){
     if(fibonacciServerCalculationCheckBox.checked){
 
         showFibonacciResultSpinner();
-        calculateFibonacciAtServerSide(userInput, calculateFibonacciComplete);
+        calculateFibonacciAtServerSide(userInput, calculateFibonacciAtServerComplete);
     }
     else{
         let result = calculateFibonacci(userInput);
@@ -38,15 +38,18 @@ function submitFibonacciInput(e){
 
     
 }
-function calculateFibonacciComplete(result){
-    updateFibonacciDisplay(result);
-    refreshFibonacciResultsDisplay();
+function calculateFibonacciAtServerComplete(result, error){
+    
+    updateFibonacciDisplay(result, error);
+    if(!error)
+        refreshFibonacciResultsDisplay();
 }
 let fibonacciInputError = document.getElementById("fibonacciInputError");
 function clearFibonacciInputError(){
     fibonacciInputError.textContent = "&#8203;";
     fibonacciInputError.classList.add("invisible");
     fibonacciInputNode.classList.remove("border-danger");
+    fibonacciInputNode.classList.remove("text-danger");
 
 }
 function showFibonacciInputAboveMaxRangeError(maxNumber){
@@ -66,4 +69,6 @@ function showFibonacciInputBelowMinRangeError(minNumber){
 function showFibonacciInputError(){
     fibonacciInputError.classList.remove("invisible");
     fibonacciInputNode.classList.add("border-danger");
+    fibonacciInputNode.classList.add("text-danger");
+
 }

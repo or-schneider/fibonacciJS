@@ -29,11 +29,16 @@ function calculateFibonacciAtServerSide(n, onComplete){
       return response.json()})
     .then(data =>{
         let serverResult;
-        if(isResponseText)
-            serverResult = data;
+        let error = null;
+        if(isResponseText){
+
+            serverResult = null;
+            error = data;
+        }
+            
         else  
             serverResult = data["result"];
 
-        onComplete(serverResult);
+        onComplete(serverResult,error);
     });
 }
