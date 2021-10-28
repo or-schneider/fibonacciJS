@@ -28,7 +28,7 @@ function submitFibonacciInput(e){
     if(fibonacciServerCalculationCheckBox.checked){
 
         showFibonacciResultSpinner();
-        calculateFibonacciAtServerSide(userInput, calculateFibonacciAtServerComplete);
+        calculateFibonacciAtServerSideAsync(userInput, calculateFibonacciAtServerComplete);
     }
     else{
         let result = calculateFibonacciRecursive(userInput);
