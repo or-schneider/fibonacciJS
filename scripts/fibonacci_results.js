@@ -9,3 +9,9 @@ function fetchFibonacciResults(onComplete){
         onComplete(results);
     });
 }
+async function fetchFibonacciResultsAsync(){
+  const url = "http://localhost:5050/getFibonacciResults"
+  let response = await fetch(url);
+  let data = await response.json();
+  return data.results;
+}

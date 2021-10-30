@@ -5,9 +5,10 @@ function showFibonacciResultsSpinner(){
 }
 let resultsListDisplay = document.getElementById("resultsList");
 
-function refreshFibonacciResultsDisplay(){
+async function refreshFibonacciResultsDisplay(){
     showFibonacciResultsSpinner();
-    fetchFibonacciResults(updateFibonacciResultsDisplay);
+    let results = await fetchFibonacciResultsAsync();
+    updateFibonacciResultsDisplay(results);
 }
 function fibonacciResultSortComparer(first, second){
     if(first["createdDate"]<second["createdDate"])
@@ -19,11 +20,8 @@ function fibonacciResultSortComparer(first, second){
 }
 let lastFetchedResultIndex = 0;
 function updateFibonacciResultsDisplay(fibonacciResultsData){
-    
-    fibonacciResultsData = fibonacciResultsData["results"];
     fibonacciResultsData.sort(fibonacciResultSortComparer);
-    // fibonacciResultsData.reverse();
-
+    
     for (lastFetchedResultIndex; lastFetchedResultIndex < fibonacciResultsData.length; lastFetchedResultIndex++) {
         const fibonacciResultData = fibonacciResultsData[lastFetchedResultIndex];
 
