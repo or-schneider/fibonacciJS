@@ -21,22 +21,37 @@ function fibonacciResultSortByDateComparer(first, second){
     if(first["createdDate"]==second["createdDate"])
         return 0;
 }
+function fibonacciResultSortByNumberComparer(first, second){
+    if(first["number"]<second["number"])
+        return -1;
+    if(first["number"]>second["number"])
+        return 1;
+    if(first["number"]==second["number"])
+        return 0;
+}
 function sortByDate(results,isAsc){
     results.sort(fibonacciResultSortByDateComparer);
     if(!isAsc)
         results.reverse();
 }
-
+function SortFibonacciResults(results,isAsc,sortComparer){
+    results.sort(sortComparer);
+    if(!isAsc)
+        results.reverse();
+}
 let sortNodeIdsToFunctions={"fibonacciResultsSortByDateAsc":(results)=>
-                                sortByDate(results,true),
+                                SortFibonacciResults(results, true,fibonacciResultSortByDateComparer),
                             "fibonacciResultsSortByDateDesc":(results)=>
-                                sortByDate(results,false)}
+                                SortFibonacciResults(results, false, fibonacciResultSortByDateComparer),
+                            "fibonacciResultsSortByNumberAsc":(results)=>
+                                SortFibonacciResults(results, true, fibonacciResultSortByNumberComparer),
+                            "fibonacciResultsSortByNumberDesc":(results)=>
+                                SortFibonacciResults(results, false, fibonacciResultSortByNumberComparer)}
 
 let activeSortFunction = sortNodeIdsToFunctions.fibonacciResultsSortByDateAsc;
 
 function initFibonacciResultsSortButton(){
     document.getElementById("fibonacciResultsSortByDropdown").addEventListener('click',(event)=>{
-        console.log("Yay",event.target.id);
         activeSortFunction = sortNodeIdsToFunctions[event.target.id];
         updateFibonacciResultsDisplay(newestFibonacciResultsData);
     });
