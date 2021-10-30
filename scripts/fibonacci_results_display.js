@@ -8,11 +8,12 @@ let resultsListDisplay = document.getElementById("resultsList");
 async function refreshFibonacciResultsDisplay(){
     showFibonacciResultsSpinner();
     let results = await fetchFibonacciResultsAsync();
-    
+    newestFibonacciResultsData = results;
+
     generateFibonacciResultsDisplay(results);
     updateFibonacciResultsDisplay(results);
 }
-function fibonacciResultSortComparer(first, second){
+function fibonacciResultSortByDateComparer(first, second){
     if(first["createdDate"]<second["createdDate"])
         return -1;
     if(first["createdDate"]>second["createdDate"])
@@ -20,11 +21,33 @@ function fibonacciResultSortComparer(first, second){
     if(first["createdDate"]==second["createdDate"])
         return 0;
 }
+function sortByDate(results,isAsc){
+    results.sort(fibonacciResultSortByDateComparer);
+    if(!isAsc)
+        results.reverse();
+}
+
+let sortNodeIdsToFunctions={"fibonacciResultsSortByDateAsc":(results)=>
+                                sortByDate(results,true),
+                            "fibonacciResultsSortByDateDesc":(results)=>
+                                sortByDate(results,false)}
+
+let activeSortFunction = sortNodeIdsToFunctions.fibonacciResultsSortByDateAsc;
+
+function initFibonacciResultsSortButton(){
+    document.getElementById("fibonacciResultsSortByDropdown").addEventListener('click',(event)=>{
+        console.log("Yay",event.target.id);
+        activeSortFunction = sortNodeIdsToFunctions[event.target.id];
+        updateFibonacciResultsDisplay(newestFibonacciResultsData);
+    });
+}
+
 let lastFetchedResultIndex = 0;
+let newestFibonacciResultsData = [];
 let fibonacciResultsEntriesComponentsNodesArray = [];
 
 function generateFibonacciResultsDisplay(fibonacciResultsData){
-    fibonacciResultsData.sort(fibonacciResultSortComparer);
+    fibonacciResultsData.sort(fibonacciResultSortByDateComparer);
     
     for (lastFetchedResultIndex; lastFetchedResultIndex < fibonacciResultsData.length; lastFetchedResultIndex++) {
 
@@ -40,6 +63,8 @@ function generateFibonacciResultsDisplay(fibonacciResultsData){
 
 }
 function updateFibonacciResultsDisplay(fibonacciResultsData){
+    activeSortFunction(fibonacciResultsData);
+
     for (let i = 0; i < fibonacciResultsData.length; i++) {
         const fibonacciResultData = fibonacciResultsData[i];
 
@@ -92,3 +117,4 @@ function updateFibonacciResultEntryNode(entryComponentsNodes,number,result,dateC
 
 
 refreshFibonacciResultsDisplay();
+initFibonacciResultsSortButton();
