@@ -21,21 +21,19 @@ function fibonacciResultSortComparer(first, second){
         return 0;
 }
 let lastFetchedResultIndex = 0;
-let fibonacciResultsNodes = [];
+let fibonacciResultsEntriesComponentsNodesArray = [];
 
 function generateFibonacciResultsDisplay(fibonacciResultsData){
     fibonacciResultsData.sort(fibonacciResultSortComparer);
     
     for (lastFetchedResultIndex; lastFetchedResultIndex < fibonacciResultsData.length; lastFetchedResultIndex++) {
-        const fibonacciResultData = fibonacciResultsData[lastFetchedResultIndex];
 
-        var createdDate = new Date(fibonacciResultData["createdDate"]);
+        let elements = generateFibonacciResultEntryNode("","","");
+        let resultsEntryNode = elements[0];
+        let resultsEntryComponentsNodes = elements[1];
 
-        let resultsEntryNode = generateFibonacciResultEntryNode(fibonacciResultData["number"],
-                                                                fibonacciResultData["result"],
-                                                                createdDate);
         resultsListDisplay.prepend(resultsEntryNode);
-        fibonacciResultsNodes.push(resultsEntryNode);
+        fibonacciResultsEntriesComponentsNodesArray.push(resultsEntryComponentsNodes);
 
     }
     hideSpinner(fibonacciResultsSpinner);
@@ -47,7 +45,7 @@ function updateFibonacciResultsDisplay(fibonacciResultsData){
 
         var createdDate = new Date(fibonacciResultData["createdDate"]);
 
-        updateFibonacciResultEntryNode(fibonacciResultsNodes[i],fibonacciResultData["number"],
+        updateFibonacciResultEntryNode(fibonacciResultsEntriesComponentsNodesArray[i],fibonacciResultData["number"],
                                                                 fibonacciResultData["result"],
                                                                 createdDate)
     }
@@ -66,30 +64,28 @@ function generateFibonacciResultEntryNode(number,result,dateCreated){
     let resultNode = document.createElement("span");
     resultNode.classList.add("fw-bold");
     resultNode.textContent = result;
-
     let createdDateNode = document.createElement("span");
     createdDateNode.textContent = dateCreated;
-    resultsEntryNode.innerHTML+="The Fibonacci Of "
+
+    resultsEntryNode.appendChild(document.createTextNode("The Fibonacci Of "));
     resultsEntryNode.appendChild(numberNode);
-    resultsEntryNode.innerHTML+=" is "
-
+    resultsEntryNode.appendChild(document.createTextNode(" is "));
     resultsEntryNode.appendChild(resultNode);
-    resultsEntryNode.innerHTML+=". Calculated at: "
-
+    resultsEntryNode.appendChild(document.createTextNode(". Calculated at: "));
     resultsEntryNode.appendChild(createdDateNode);
-    return resultsEntryNode;
+
+    let resultsEntryComponentsNodes = {"number":numberNode,"result":resultNode,"createdDate": createdDateNode};
+    return [resultsEntryNode,resultsEntryComponentsNodes];
 }
-function updateFibonacciResultEntryNode(resultsEntryNode,number,result,dateCreated){
+function updateFibonacciResultEntryNode(entryComponentsNodes,number,result,dateCreated){
 
-    let resultsEntryNodes = resultsEntryNode.querySelectorAll('span');
-
-    let numberNode = resultsEntryNodes[0];
+    let numberNode = entryComponentsNodes.number;
     numberNode.textContent = number;
 
-    let resultNode = resultsEntryNodes[1];
+    let resultNode = entryComponentsNodes.result;
     resultNode.textContent = result;
 
-    let createdDateNode = resultsEntryNodes[2];
+    let createdDateNode = entryComponentsNodes.createdDate;
     createdDateNode.textContent = dateCreated;
 }
 
