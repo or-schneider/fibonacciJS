@@ -15,7 +15,7 @@ function calculate(n){
     return sum;
 }
 
-let calculateRecursive =(function () {
+export let calculateRecursive =(function () {
     let resultsCache = [0,1];
 
     return function fibonacciRecursive(n){
@@ -30,7 +30,6 @@ let calculateRecursive =(function () {
         return sum;
     }
 })()
-export {calculateRecursive};
 
 export async function calculateServerSideAsync(n, onComplete){
     const url = `http://localhost:3000/fibonacci/${n}`

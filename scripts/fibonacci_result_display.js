@@ -1,44 +1,44 @@
-let fibonacciResultNode = document.getElementById("fibonacciResult");
-let fibonacciResultSpinner = document.getElementById("fibonacciResultSpinner");
+let resultNode = document.getElementById("fibonacciResult");
+let resultSpinner = document.getElementById("fibonacciResultSpinner");
 
 export function showResultSpinner(){
-    fibonacciResultNode.innerHTML = "&#8203; &nbsp;";
-    fibonacciResultNode.classList.add("invisible");
-    showSpinner(fibonacciResultSpinner);
+    resultNode.innerHTML = "&#8203; &nbsp;";
+    resultNode.classList.add("invisible");
+    showSpinner(resultSpinner);
 }
 export function updateDisplay(fibonacciResult, error){
-    hideSpinner(fibonacciResultSpinner);
+    hideSpinner(resultSpinner);
 
-    fibonacciResultNode.classList.remove("invisible");
+    resultNode.classList.remove("invisible");
 
     let displayText;
 
     if(error){
         displayText =`Server Error: ${error}`;
-        applyFibonacciDisplayErrorStyle();
+        applyDisplayErrorStyle();
     }
     else{
         displayText = fibonacciResult;
-        applyFibonacciDisplaySuccessStyle();
+        applyDisplaySuccessStyle();
     }
 
-    fibonacciResultNode.innerHTML = displayText;
+    resultNode.innerHTML = displayText;
 }
-function applyFibonacciDisplaySuccessStyle(){
-    fibonacciResultNode.classList.add("text-decoration-underline");
-    fibonacciResultNode.classList.remove("text-danger");
+function applyDisplaySuccessStyle(){
+    resultNode.classList.add("text-decoration-underline");
+    resultNode.classList.remove("text-danger");
 
-    fibonacciResultNode.classList.add("fw-bold");
-    fibonacciResultNode.classList.remove("h7");
-    fibonacciResultNode.classList.add("h5");
+    resultNode.classList.add("fw-bold");
+    resultNode.classList.remove("h7");
+    resultNode.classList.add("h5");
 }
-function applyFibonacciDisplayErrorStyle(){
-    fibonacciResultNode.classList.add("text-danger");
-    fibonacciResultNode.classList.remove("text-decoration-underline");
+function applyDisplayErrorStyle(){
+    resultNode.classList.add("text-danger");
+    resultNode.classList.remove("text-decoration-underline");
     
-    fibonacciResultNode.classList.remove("fw-bold");
-    fibonacciResultNode.classList.remove("h5");
-    fibonacciResultNode.classList.add("h7");
+    resultNode.classList.remove("fw-bold");
+    resultNode.classList.remove("h5");
+    resultNode.classList.add("h7");
 
 
 }
