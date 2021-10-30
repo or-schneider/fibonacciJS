@@ -1,27 +1,27 @@
 import * as fibonacciCalculation from "./fibonacci_calculation.js";
 import * as fibonacciResultDisplay from "./fibonacci_result_display.js";
 import * as fibonacciResultsDisplay from "./fibonacci_results_display.js";
-const fibonacciInputMax = 50;
-const fibonacciInputMin = 1;
+const inputMax = 50;
+const inputMin = 1;
 
-let fibonacciInputNode = document.getElementById("fibonacciInput");
-let fibonacciInputButton = document.getElementById("fibonacciInputButton");
+let inputNode = document.getElementById("fibonacciInput");
+let inputButton = document.getElementById("fibonacciInputButton");
 
-let fibonacciServerCalculationCheckBox = document.getElementById("fibonacciServerCalculationCheckBox");
+let serverCalculationCheckBox = document.getElementById("fibonacciServerCalculationCheckBox");
 
 
-fibonacciInputButton.addEventListener('click',submitFibonacciInput)
-function submitFibonacciInput(e){
+inputButton.addEventListener('click',submitInput)
+function submitInput(e){
 
     e.preventDefault();
 
-    let userInput = fibonacciInputNode.value;
+    let userInput = inputNode.value;
     if(userInput == "")
         return;
     
-    clearFibonacciInputError();
+    clearInputError();
 
-    if(fibonacciServerCalculationCheckBox.checked){
+    if(serverCalculationCheckBox.checked){
 
         fibonacciResultDisplay.showSpinner();
         fibonacciCalculation.calculateServerSideAsync(userInput, calculateFibonacciAtServerComplete);
@@ -34,16 +34,14 @@ function submitFibonacciInput(e){
         fibonacciResultDisplay.updateDisplay(result);
         
     }
-
-    
 }
 function validateInput(userInput){
-    if (userInput < fibonacciInputMin) {
-        showFibonacciInputBelowMinRangeError(fibonacciInputMin);
+    if (userInput < inputMin) {
+        showInputBelowMinRangeError(inputMin);
         return false;
     }
-    if(userInput>fibonacciInputMax){
-        showFibonacciInputAboveMaxRangeError(fibonacciInputMax);
+    if(userInput>inputMax){
+        showInputAboveMaxRangeError(inputMax);
         return false;
     }
         return true;
@@ -54,36 +52,29 @@ function calculateFibonacciAtServerComplete(result, error){
         if(!error)
             fibonacciResultsDisplay.refreshDisplay();
 }
-let fibonacciInputError = document.getElementById("fibonacciInputError");
-function clearFibonacciInputError(){
-    fibonacciInputError.textContent = "&#8203;";
-    fibonacciInputError.classList.add("invisible");
-    fibonacciInputNode.classList.remove("border-danger");
-    fibonacciInputNode.classList.remove("text-danger");
-
+let inputErrorNode = document.getElementById("fibonacciInputError");
+function clearInputError(){
+    inputErrorNode.textContent = "&#8203;";
+    inputErrorNode.classList.add("invisible");
+    inputNode.classList.remove("border-danger");
+    inputNode.classList.remove("text-danger");
 }
-function showFibonacciInputAboveMaxRangeError(maxNumber){
+function showInputAboveMaxRangeError(maxNumber){
     
     showFibonacciInputError();
 
     let errorMessage = `Can't be larger than ${maxNumber}`;
-    fibonacciInputError.textContent = errorMessage;
+    inputErrorNode.textContent = errorMessage;
 }
-function showFibonacciInputBelowMinRangeError(minNumber){
+function showInputBelowMinRangeError(minNumber){
     
     showFibonacciInputError();
 
     let errorMessage = `Can't be smaller than ${minNumber}`;
-    fibonacciInputError.textContent = errorMessage;
-}
-function showFibonacciInputServerError(errorMessage){
-    showFibonacciInputError();
-    console.log(errorMessage);
-    fibonacciInputError.textContent = errorMessage;
+    inputErrorNode.textContent = errorMessage;
 }
 function showFibonacciInputError(){
-    fibonacciInputError.classList.remove("invisible");
-    fibonacciInputNode.classList.add("border-danger");
-    fibonacciInputNode.classList.add("text-danger");
-
+    inputErrorNode.classList.remove("invisible");
+    inputNode.classList.add("border-danger");
+    inputNode.classList.add("text-danger");
 }
