@@ -1,12 +1,12 @@
 let fibonacciResultNode = document.getElementById("fibonacciResult");
 let fibonacciResultSpinner = document.getElementById("fibonacciResultSpinner");
 
-function showFibonacciResultSpinner(){
+export function showResultSpinner(){
     fibonacciResultNode.innerHTML = "&#8203; &nbsp;";
     fibonacciResultNode.classList.add("invisible");
     showSpinner(fibonacciResultSpinner);
 }
-function updateFibonacciDisplay(fibonacciResult, error){
+export function updateDisplay(fibonacciResult, error){
     hideSpinner(fibonacciResultSpinner);
 
     fibonacciResultNode.classList.remove("invisible");

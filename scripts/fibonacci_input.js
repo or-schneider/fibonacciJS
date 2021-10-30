@@ -1,4 +1,5 @@
-import * as fibonacci_calculation from "./fibonacci_calculation.js";
+import * as fibonacciCalculation from "./fibonacci_calculation.js";
+import * as fibonacciResultDisplay from "./fibonacci_result_display.js";
 const fibonacciInputMax = 50;
 const fibonacciInputMin = 1;
 
@@ -21,15 +22,15 @@ function submitFibonacciInput(e){
 
     if(fibonacciServerCalculationCheckBox.checked){
 
-        showFibonacciResultSpinner();
-        fibonacci_calculation.calculateServerSideAsync(userInput, calculateFibonacciAtServerComplete);
+        fibonacciResultDisplay.showResultSpinner();
+        fibonacciCalculation.calculateServerSideAsync(userInput, calculateFibonacciAtServerComplete);
     }
     else{
         let success = validateInput(userInput);
         if(!success)
             return;
-        let result = fibonacci_calculation.calculateRecursive(userInput);
-        updateFibonacciDisplay(result);
+        let result = fibonacciCalculation.calculateRecursive(userInput);
+        fibonacciResultDisplay.updateDisplay(result);
         
     }
 
@@ -48,7 +49,7 @@ function validateInput(userInput){
 
 }
 function calculateFibonacciAtServerComplete(result, error){
-        updateFibonacciDisplay(result, error);
+    fibonacciResultDisplay.updateDisplay(result, error);
         if(!error)
             refreshFibonacciResultsDisplay();
 }
