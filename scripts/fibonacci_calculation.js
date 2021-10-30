@@ -42,7 +42,7 @@ async function calculateFibonacciAtServerSideAsync(n, onComplete){
     if(!response.ok)
     {
         data = await response.text();
-        serverResult = null;
+        serverResult = n;
         error = data;
     }
     else{

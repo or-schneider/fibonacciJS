@@ -15,14 +15,7 @@ function submitFibonacciInput(e){
     let userInput = fibonacciInputNode.value;
     if(userInput == "")
         return;
-    if (userInput < fibonacciInputMin) {
-        showFibonacciInputBelowMinRangeError(fibonacciInputMin);
-        return;
-    }
-    if(userInput>fibonacciInputMax){
-        showFibonacciInputAboveMaxRangeError(fibonacciInputMax);
-        return;
-    }
+    
     clearFibonacciInputError();
 
     if(fibonacciServerCalculationCheckBox.checked){
@@ -31,6 +24,9 @@ function submitFibonacciInput(e){
         calculateFibonacciAtServerSideAsync(userInput, calculateFibonacciAtServerComplete);
     }
     else{
+        let success = validateInput(userInput);
+        if(!success)
+            return;
         let result = calculateFibonacciRecursive(userInput);
         updateFibonacciDisplay(result);
         
@@ -38,11 +34,22 @@ function submitFibonacciInput(e){
 
     
 }
+function validateInput(userInput){
+    if (userInput < fibonacciInputMin) {
+        showFibonacciInputBelowMinRangeError(fibonacciInputMin);
+        return false;
+    }
+    if(userInput>fibonacciInputMax){
+        showFibonacciInputAboveMaxRangeError(fibonacciInputMax);
+        return false;
+    }
+        return true;
+
+}
 function calculateFibonacciAtServerComplete(result, error){
-    
-    updateFibonacciDisplay(result, error);
-    if(!error)
-        refreshFibonacciResultsDisplay();
+        updateFibonacciDisplay(result, error);
+        if(!error)
+            refreshFibonacciResultsDisplay();
 }
 let fibonacciInputError = document.getElementById("fibonacciInputError");
 function clearFibonacciInputError(){
@@ -64,6 +71,11 @@ function showFibonacciInputBelowMinRangeError(minNumber){
     showFibonacciInputError();
 
     let errorMessage = `Can't be smaller than ${minNumber}`;
+    fibonacciInputError.textContent = errorMessage;
+}
+function showFibonacciInputServerError(errorMessage){
+    showFibonacciInputError();
+    console.log(errorMessage);
     fibonacciInputError.textContent = errorMessage;
 }
 function showFibonacciInputError(){
