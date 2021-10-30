@@ -1,13 +1,16 @@
+import * as spinnerEnabler from "./spinner.js"
+
+
 let resultNode = document.getElementById("fibonacciResult");
 let resultSpinner = document.getElementById("fibonacciResultSpinner");
 
-export function showResultSpinner(){
+export function showSpinner(){
     resultNode.innerHTML = "&#8203; &nbsp;";
     resultNode.classList.add("invisible");
-    showSpinner(resultSpinner);
+    spinnerEnabler.showSpinner(resultSpinner);
 }
-export function updateDisplay(fibonacciResult, error){
-    hideSpinner(resultSpinner);
+export function updateDisplay(result, error){
+    spinnerEnabler.hideSpinner(resultSpinner);
 
     resultNode.classList.remove("invisible");
 
@@ -18,7 +21,7 @@ export function updateDisplay(fibonacciResult, error){
         applyDisplayErrorStyle();
     }
     else{
-        displayText = fibonacciResult;
+        displayText = result;
         applyDisplaySuccessStyle();
     }
 

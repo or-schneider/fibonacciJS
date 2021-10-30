@@ -1,4 +1,4 @@
-function fetchFibonacciResults(onComplete){
+function fetchResults(onComplete){
     const url = "http://localhost:3000/getFibonacciResults"
     fetch(url)
     .then(response => {
@@ -9,7 +9,7 @@ function fetchFibonacciResults(onComplete){
         onComplete(results);
     });
 }
-async function fetchFibonacciResultsAsync(){
+export async function fetchResultsAsync(){
   const url = "http://localhost:3000/getFibonacciResults"
   let response = await fetch(url);
   let data = await response.json();

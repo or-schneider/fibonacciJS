@@ -1,19 +1,21 @@
-let fibonacciResultsSpinner = document.getElementById("fibonacciResultsSpinner");
+import * as spinnerEnabler from "./spinner.js"
+import {fetchResultsAsync} from "./fibonacci_results.js"
+let resultsSpinner = document.getElementById("fibonacciResultsSpinner");
 
-function showFibonacciResultsSpinner(){
-    showSpinner(fibonacciResultsSpinner);
+function showSpinner(){
+    spinnerEnabler.showSpinner(resultsSpinner);
 }
 let resultsListDisplay = document.getElementById("resultsList");
 
-async function refreshFibonacciResultsDisplay(){
-    showFibonacciResultsSpinner();
-    let results = await fetchFibonacciResultsAsync();
-    newestFibonacciResultsData = results;
+export async function refreshDisplay(){
+    showSpinner();
+    let results = await fetchResultsAsync();
+    newestResultsData = results;
 
-    generateFibonacciResultsDisplay(results);
-    updateFibonacciResultsDisplay(results);
+    generateDisplay(results);
+    updateDisplay(results);
 }
-function fibonacciResultSortByDateComparer(first, second){
+function sortByDateComparer(first, second){
     if(first["createdDate"]<second["createdDate"])
         return -1;
     if(first["createdDate"]>second["createdDate"])
@@ -21,7 +23,7 @@ function fibonacciResultSortByDateComparer(first, second){
     if(first["createdDate"]==second["createdDate"])
         return 0;
 }
-function fibonacciResultSortByNumberComparer(first, second){
+function sortByNumberComparer(first, second){
     if(first["number"]<second["number"])
         return -1;
     if(first["number"]>second["number"])
@@ -29,74 +31,69 @@ function fibonacciResultSortByNumberComparer(first, second){
     if(first["number"]==second["number"])
         return 0;
 }
-function sortByDate(results,isAsc){
-    results.sort(fibonacciResultSortByDateComparer);
-    if(!isAsc)
-        results.reverse();
-}
-function SortFibonacciResults(results,isAsc,sortComparer){
+function sortResults(results,isAsc,sortComparer){
     results.sort(sortComparer);
     if(!isAsc)
         results.reverse();
 }
 let sortNodeIdsToFunctions={"fibonacciResultsSortByDateAsc":(results)=>
-                                SortFibonacciResults(results, true,fibonacciResultSortByDateComparer),
+                                sortResults(results, true,sortByDateComparer),
                             "fibonacciResultsSortByDateDesc":(results)=>
-                                SortFibonacciResults(results, false, fibonacciResultSortByDateComparer),
+                                sortResults(results, false, sortByDateComparer),
                             "fibonacciResultsSortByNumberAsc":(results)=>
-                                SortFibonacciResults(results, true, fibonacciResultSortByNumberComparer),
+                                sortResults(results, true, sortByNumberComparer),
                             "fibonacciResultsSortByNumberDesc":(results)=>
-                                SortFibonacciResults(results, false, fibonacciResultSortByNumberComparer)}
+                                sortResults(results, false, sortByNumberComparer)}
 
 let activeSortFunction = sortNodeIdsToFunctions.fibonacciResultsSortByDateAsc;
 
-function initFibonacciResultsSortButton(){
+function initSortButton(){
     document.getElementById("fibonacciResultsSortByDropdown").addEventListener('click',(event)=>{
         activeSortFunction = sortNodeIdsToFunctions[event.target.id];
-        updateFibonacciResultsDisplay(newestFibonacciResultsData);
+        updateDisplay(newestResultsData);
     });
 }
 
 let lastFetchedResultIndex = 0;
-let newestFibonacciResultsData = [];
-let fibonacciResultsEntriesComponentsNodesArray = [];
+let newestResultsData = [];
+let entriesComponentsNodesArray = [];
 
-function generateFibonacciResultsDisplay(fibonacciResultsData){
-    fibonacciResultsData.sort(fibonacciResultSortByDateComparer);
+function generateDisplay(resultsData){
+    resultsData.sort(sortByDateComparer);
     
-    for (lastFetchedResultIndex; lastFetchedResultIndex < fibonacciResultsData.length; lastFetchedResultIndex++) {
+    for (lastFetchedResultIndex; lastFetchedResultIndex < resultsData.length; lastFetchedResultIndex++) {
 
-        let elements = generateFibonacciResultEntryNode("","","");
+        let elements = generateResultEntryNode("","","");
         let resultsEntryNode = elements[0];
         let resultsEntryComponentsNodes = elements[1];
 
         resultsListDisplay.prepend(resultsEntryNode);
-        fibonacciResultsEntriesComponentsNodesArray.push(resultsEntryComponentsNodes);
+        entriesComponentsNodesArray.push(resultsEntryComponentsNodes);
 
     }
-    hideSpinner(fibonacciResultsSpinner);
+    spinnerEnabler.hideSpinner(resultsSpinner);
 
 }
-function updateFibonacciResultsDisplay(fibonacciResultsData){
-    activeSortFunction(fibonacciResultsData);
+function updateDisplay(resultsData){
+    activeSortFunction(resultsData);
 
-    for (let i = 0; i < fibonacciResultsData.length; i++) {
-        const fibonacciResultData = fibonacciResultsData[i];
+    for (let i = 0; i < resultsData.length; i++) {
+        const resultData = resultsData[i];
 
-        var createdDate = new Date(fibonacciResultData["createdDate"]);
+        var createdDate = new Date(resultData["createdDate"]);
 
-        updateFibonacciResultEntryNode(fibonacciResultsEntriesComponentsNodesArray[i],fibonacciResultData["number"],
-                                                                fibonacciResultData["result"],
+        updateResultEntryNode(entriesComponentsNodesArray[i],resultData["number"],
+                                                                resultData["result"],
                                                                 createdDate)
     }
 
 }
-function generateFibonacciResultEntryNode(number,result,dateCreated){
-    let resultsEntryNode = document.createElement("li");
-    resultsEntryNode.classList.add("border-bottom");
-    resultsEntryNode.classList.add("border-dark");
-    resultsEntryNode.classList.add("pb-2");
-    resultsEntryNode.classList.add("pt-2");
+function generateResultEntryNode(number,result,dateCreated){
+    let entryNode = document.createElement("li");
+    entryNode.classList.add("border-bottom");
+    entryNode.classList.add("border-dark");
+    entryNode.classList.add("pb-2");
+    entryNode.classList.add("pt-2");
       
     let numberNode = document.createElement("span");
     numberNode.classList.add("fw-bold");
@@ -107,17 +104,17 @@ function generateFibonacciResultEntryNode(number,result,dateCreated){
     let createdDateNode = document.createElement("span");
     createdDateNode.textContent = dateCreated;
 
-    resultsEntryNode.appendChild(document.createTextNode("The Fibonacci Of "));
-    resultsEntryNode.appendChild(numberNode);
-    resultsEntryNode.appendChild(document.createTextNode(" is "));
-    resultsEntryNode.appendChild(resultNode);
-    resultsEntryNode.appendChild(document.createTextNode(". Calculated at: "));
-    resultsEntryNode.appendChild(createdDateNode);
+    entryNode.appendChild(document.createTextNode("The Fibonacci Of "));
+    entryNode.appendChild(numberNode);
+    entryNode.appendChild(document.createTextNode(" is "));
+    entryNode.appendChild(resultNode);
+    entryNode.appendChild(document.createTextNode(". Calculated at: "));
+    entryNode.appendChild(createdDateNode);
 
-    let resultsEntryComponentsNodes = {"number":numberNode,"result":resultNode,"createdDate": createdDateNode};
-    return [resultsEntryNode,resultsEntryComponentsNodes];
+    let entryComponentsNodes = {"number":numberNode,"result":resultNode,"createdDate": createdDateNode};
+    return [entryNode,entryComponentsNodes];
 }
-function updateFibonacciResultEntryNode(entryComponentsNodes,number,result,dateCreated){
+function updateResultEntryNode(entryComponentsNodes,number,result,dateCreated){
 
     let numberNode = entryComponentsNodes.number;
     numberNode.textContent = number;
@@ -131,5 +128,5 @@ function updateFibonacciResultEntryNode(entryComponentsNodes,number,result,dateC
 
 
 
-refreshFibonacciResultsDisplay();
-initFibonacciResultsSortButton();
+refreshDisplay();
+initSortButton();

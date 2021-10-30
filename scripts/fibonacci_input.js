@@ -1,5 +1,6 @@
 import * as fibonacciCalculation from "./fibonacci_calculation.js";
 import * as fibonacciResultDisplay from "./fibonacci_result_display.js";
+import * as fibonacciResultsDisplay from "./fibonacci_results_display.js";
 const fibonacciInputMax = 50;
 const fibonacciInputMin = 1;
 
@@ -22,7 +23,7 @@ function submitFibonacciInput(e){
 
     if(fibonacciServerCalculationCheckBox.checked){
 
-        fibonacciResultDisplay.showResultSpinner();
+        fibonacciResultDisplay.showSpinner();
         fibonacciCalculation.calculateServerSideAsync(userInput, calculateFibonacciAtServerComplete);
     }
     else{
@@ -51,7 +52,7 @@ function validateInput(userInput){
 function calculateFibonacciAtServerComplete(result, error){
     fibonacciResultDisplay.updateDisplay(result, error);
         if(!error)
-            refreshFibonacciResultsDisplay();
+            fibonacciResultsDisplay.refreshDisplay();
 }
 let fibonacciInputError = document.getElementById("fibonacciInputError");
 function clearFibonacciInputError(){

@@ -1,7 +1,7 @@
-function showSpinner(spinner){
+export function showSpinner(spinner){
     spinner.classList.remove("d-none");
 
 }
-function hideSpinner(spinner){
+export function hideSpinner(spinner){
     spinner.classList.add("d-none");
 }
