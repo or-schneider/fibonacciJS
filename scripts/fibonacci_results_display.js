@@ -1,11 +1,12 @@
 import * as spinnerEnabler from "./spinner.js"
 import {fetchResultsAsync} from "./fibonacci_results.js"
-let resultsSpinner = document.getElementById("fibonacciResultsSpinner");
+
+const resultsSpinner = document.getElementById("fibonacciResultsSpinner");
 
 function showSpinner(){
     spinnerEnabler.showSpinner(resultsSpinner);
 }
-let resultsListDisplay = document.getElementById("resultsList");
+const resultsListDisplay = document.getElementById("resultsList");
 
 export async function refreshDisplay(){
     showSpinner();
@@ -36,7 +37,7 @@ function sortResults(results,isAsc,sortComparer){
     if(!isAsc)
         results.reverse();
 }
-let sortNodeIdsToFunctions={"fibonacciResultsSortByDateAsc":(results)=>
+const sortNodeIdsToFunctions={"fibonacciResultsSortByDateAsc":(results)=>
                                 sortResults(results, true,sortByDateComparer),
                             "fibonacciResultsSortByDateDesc":(results)=>
                                 sortResults(results, false, sortByDateComparer),
@@ -126,7 +127,10 @@ function updateResultEntryNode(entryComponentsNodes,number,result,dateCreated){
     createdDateNode.textContent = dateCreated;
 }
 
+function init(){
 
+    refreshDisplay();
+    initSortButton();
+}
 
-refreshDisplay();
-initSortButton();
+init();

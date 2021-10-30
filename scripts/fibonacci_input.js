@@ -4,13 +4,11 @@ import * as fibonacciResultsDisplay from "./fibonacci_results_display.js";
 const inputMax = 50;
 const inputMin = 1;
 
-let inputNode = document.getElementById("fibonacciInput");
-let inputButton = document.getElementById("fibonacciInputButton");
+const inputNode = document.getElementById("fibonacciInput");
+const inputButton = document.getElementById("fibonacciInputButton");
 
-let serverCalculationCheckBox = document.getElementById("fibonacciServerCalculationCheckBox");
+const serverCalculationCheckBox = document.getElementById("fibonacciServerCalculationCheckBox");
 
-
-inputButton.addEventListener('click',submitInput)
 function submitInput(e){
 
     e.preventDefault();
@@ -52,7 +50,8 @@ function calculateFibonacciAtServerComplete(result, error){
         if(!error)
             fibonacciResultsDisplay.refreshDisplay();
 }
-let inputErrorNode = document.getElementById("fibonacciInputError");
+
+const inputErrorNode = document.getElementById("fibonacciInputError");
 function clearInputError(){
     inputErrorNode.textContent = "&#8203;";
     inputErrorNode.classList.add("invisible");
@@ -78,3 +77,8 @@ function showFibonacciInputError(){
     inputNode.classList.add("border-danger");
     inputNode.classList.add("text-danger");
 }
+
+function init(){
+    inputButton.addEventListener('click',submitInput);
+}
+init();

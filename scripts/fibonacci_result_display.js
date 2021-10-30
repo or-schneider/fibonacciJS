@@ -1,8 +1,8 @@
 import * as spinnerEnabler from "./spinner.js"
 
 
-let resultNode = document.getElementById("fibonacciResult");
-let resultSpinner = document.getElementById("fibonacciResultSpinner");
+const resultNode = document.getElementById("fibonacciResult");
+const resultSpinner = document.getElementById("fibonacciResultSpinner");
 
 export function showSpinner(){
     resultNode.innerHTML = "&#8203; &nbsp;";

@@ -15,8 +15,8 @@ function calculate(n){
     return sum;
 }
 
-export let calculateRecursive =(function () {
-    let resultsCache = [0,1];
+export const calculateRecursive =(function () {
+    const resultsCache = [0,1];
 
     return function fibonacciRecursive(n){
         if(resultsCache.length>n)
