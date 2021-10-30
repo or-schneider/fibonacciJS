@@ -1,4 +1,4 @@
-[submodule "fibonacci-server"]
-	path = fibonacci-server
-	url = https://github.com/israeltechchallenge/fibonacci-server
+[submodule "fibonacciServer"]
+	path = fibonacciServer
+	url = https://github.com/or-schneider/fibonacciServer.git
 	ignore = dirty

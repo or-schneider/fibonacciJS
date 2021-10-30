@@ -31,7 +31,7 @@ let calculateFibonacciRecursive =(function () {
     }
 })()
 async function calculateFibonacciAtServerSideAsync(n, onComplete){
-    const url = `http://localhost:5050/fibonacci/${n}`
+    const url = `http://localhost:3000/fibonacci/${n}`
     let response = await fetch(url);
 
     let data;
@@ -53,7 +53,7 @@ async function calculateFibonacciAtServerSideAsync(n, onComplete){
 }
 function calculateFibonacciAtServerSide(n, onComplete){
     
-    const url = `http://localhost:5050/fibonacci/${n}`
+    const url = `http://localhost:3000/fibonacci/${n}`
     let isResponseText = false;
 
     fetch(url)
