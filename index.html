@@ -145,6 +145,76 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle text-body bg-light"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Sort By
+            </button>
+            <ul
+                  id="fibonacciResultsSortByDropdown"
+              class="dropdown-menu border-0 rounded bg-transparent"
+              aria-labelledby="dropdownMenu2"
+            >
+              <li>
+                <button
+                  id="fibonacciResultsSortByNumberAsc"
+                  class="
+                    dropdown-item
+                    py-1
+                    border border-bottom-0
+                    rounded
+                    bg-white
+                  "
+                  type="button"
+                >
+                  Number Asc
+                </button>
+              </li>
+              <li>
+                <button
+                  id="fibonacciResultsSortByNumberDesc"
+                  class="
+                    dropdown-item
+                    py-1
+                    border border border-bottom-0
+                    rounded
+                    bg-white
+                  "
+                  type="button"
+                >
+                  Number Desc
+                </button>
+              </li>
+              <li>
+                <button
+                  id="fibonacciResultsSortByDateAsc"
+                  class="
+                    dropdown-item
+                    py-1
+                    border border border-bottom-0
+                    rounded
+                    bg-white
+                  "
+                  type="button"
+                >
+                  Date Asc
+                </button>
+              </li>
+              <li>
+                <button
+                  id="fibonacciResultsSortByDateDesc"
+                  class="dropdown-item py-1 border rounded bg-white"
+                  type="button"
+                >
+                  Date Desc
+                </button>
+              </li>
+            </ul>
+          </div>
           <ul id="resultsList" class="results-list list-unstyled"></ul>
         </div>
       </div>
