@@ -1,3 +1,4 @@
+import * as fibonacci_calculation from "./fibonacci_calculation.js";
 const fibonacciInputMax = 50;
 const fibonacciInputMin = 1;
 
@@ -21,13 +22,13 @@ function submitFibonacciInput(e){
     if(fibonacciServerCalculationCheckBox.checked){
 
         showFibonacciResultSpinner();
-        calculateFibonacciAtServerSideAsync(userInput, calculateFibonacciAtServerComplete);
+        fibonacci_calculation.calculateServerSideAsync(userInput, calculateFibonacciAtServerComplete);
     }
     else{
         let success = validateInput(userInput);
         if(!success)
             return;
-        let result = calculateFibonacciRecursive(userInput);
+        let result = fibonacci_calculation.calculateRecursive(userInput);
         updateFibonacciDisplay(result);
         
     }

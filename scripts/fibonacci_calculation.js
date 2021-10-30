@@ -1,4 +1,4 @@
-function calculateFibonacci(n){
+function calculate(n){
     
     let sum = 0;
     
@@ -15,7 +15,7 @@ function calculateFibonacci(n){
     return sum;
 }
 
-let calculateFibonacciRecursive =(function () {
+let calculateRecursive =(function () {
     let resultsCache = [0,1];
 
     return function fibonacciRecursive(n){
@@ -30,7 +30,9 @@ let calculateFibonacciRecursive =(function () {
         return sum;
     }
 })()
-async function calculateFibonacciAtServerSideAsync(n, onComplete){
+export {calculateRecursive};
+
+export async function calculateServerSideAsync(n, onComplete){
     const url = `http://localhost:3000/fibonacci/${n}`
     let response = await fetch(url);
 
@@ -51,7 +53,7 @@ async function calculateFibonacciAtServerSideAsync(n, onComplete){
     }
     onComplete(serverResult,error);
 }
-function calculateFibonacciAtServerSide(n, onComplete){
+export function calculateServerSide(n, onComplete){
     
     const url = `http://localhost:3000/fibonacci/${n}`
     let isResponseText = false;
