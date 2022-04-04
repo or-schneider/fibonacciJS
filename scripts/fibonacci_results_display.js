@@ -10,7 +10,7 @@ const resultsListDisplay = document.getElementById("resultsList");
 
 export async function refreshDisplay() {
   showSpinner();
-  let results = await fetchResultsAsync();
+  const results = await fetchResultsAsync();
   newestResultsData = results;
 
   generateDisplay(results);
@@ -64,9 +64,9 @@ function generateDisplay(resultsData) {
     lastFetchedResultIndex < resultsData.length;
     lastFetchedResultIndex++
   ) {
-    let elements = generateResultEntryNode("", "", "");
-    let resultsEntryNode = elements[0];
-    let resultsEntryComponentsNodes = elements[1];
+    const elements = generateResultEntryNode("", "", "");
+    const resultsEntryNode = elements[0];
+    const resultsEntryComponentsNodes = elements[1];
 
     resultsListDisplay.prepend(resultsEntryNode);
     entriesComponentsNodesArray.push(resultsEntryComponentsNodes);
@@ -79,7 +79,7 @@ function updateDisplay(resultsData) {
   for (let i = 0; i < resultsData.length; i++) {
     const resultData = resultsData[i];
 
-    var createdDate = new Date(resultData["createdDate"]);
+    const createdDate = new Date(resultData["createdDate"]);
 
     updateResultEntryNode(
       entriesComponentsNodesArray[i],
@@ -90,19 +90,19 @@ function updateDisplay(resultsData) {
   }
 }
 function generateResultEntryNode(number, result, dateCreated) {
-  let entryNode = document.createElement("li");
+  const entryNode = document.createElement("li");
   entryNode.classList.add("border-bottom");
   entryNode.classList.add("border-dark");
   entryNode.classList.add("pb-2");
   entryNode.classList.add("pt-2");
 
-  let numberNode = document.createElement("span");
+  const numberNode = document.createElement("span");
   numberNode.classList.add("fw-bold");
   numberNode.textContent = number;
-  let resultNode = document.createElement("span");
+  const resultNode = document.createElement("span");
   resultNode.classList.add("fw-bold");
   resultNode.textContent = result;
-  let createdDateNode = document.createElement("span");
+  const createdDateNode = document.createElement("span");
   createdDateNode.textContent = dateCreated;
 
   entryNode.appendChild(document.createTextNode("The Fibonacci Of "));
@@ -112,7 +112,7 @@ function generateResultEntryNode(number, result, dateCreated) {
   entryNode.appendChild(document.createTextNode(". Calculated at: "));
   entryNode.appendChild(createdDateNode);
 
-  let entryComponentsNodes = {
+  const entryComponentsNodes = {
     number: numberNode,
     result: resultNode,
     createdDate: createdDateNode,
@@ -125,13 +125,13 @@ function updateResultEntryNode(
   result,
   dateCreated
 ) {
-  let numberNode = entryComponentsNodes.number;
+  const numberNode = entryComponentsNodes.number;
   numberNode.textContent = number;
 
-  let resultNode = entryComponentsNodes.result;
+  const resultNode = entryComponentsNodes.result;
   resultNode.textContent = result;
 
-  let createdDateNode = entryComponentsNodes.createdDate;
+  const createdDateNode = entryComponentsNodes.createdDate;
   createdDateNode.textContent = dateCreated;
 }
 

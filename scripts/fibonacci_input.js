@@ -58,13 +58,13 @@ function clearInputError() {
 function showInputAboveMaxRangeError(maxNumber) {
   showFibonacciInputError();
 
-  let errorMessage = `Can't be larger than ${maxNumber}`;
+  const errorMessage = `Can't be larger than ${maxNumber}`;
   inputErrorNode.textContent = errorMessage;
 }
 function showInputBelowMinRangeError(minNumber) {
   showFibonacciInputError();
 
-  let errorMessage = `Can't be smaller than ${minNumber}`;
+  const errorMessage = `Can't be smaller than ${minNumber}`;
   inputErrorNode.textContent = errorMessage;
 }
 function showFibonacciInputError() {
