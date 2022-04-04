@@ -24,7 +24,7 @@ Run client server
 ```
 node app.js
 ```
-Or use git-bash terminal and run both at the same time
+Or use git-bash terminal to run both at the same time
 ```
 node fibonacciServer/app.js & node app.js
 ```

@@ -1,82 +1,51 @@
-function calculate(n){
-    
-    let sum = 0;
-    
-    let number1 = 0;
-    let number2 = 1;
+function calculate(n) {
+  let sum = 0;
 
-    for (let i = 0; i < n; i++) {
-        let sumAtStart = sum;
-        sum = number1+number2;
+  let number1 = 0;
+  let number2 = 1;
 
-        number1 = sumAtStart;
-        number2 = sum;
-    }
+  for (let i = 0; i < n; i++) {
+    let sumAtStart = sum;
+    sum = number1 + number2;
+
+    number1 = sumAtStart;
+    number2 = sum;
+  }
+  return sum;
+}
+
+export const calculateRecursive = (function () {
+  const resultsCache = [0, 1];
+
+  return function fibonacciRecursive(n) {
+    if (resultsCache.length > n) return resultsCache[n];
+
+    if (n <= 1) return n;
+
+    const sum = fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+    resultsCache[n] = sum;
     return sum;
-}
+  };
+})();
 
-export const calculateRecursive =(function () {
-    const resultsCache = [0,1];
+export async function calculateServerSideAsync(
+  n,
+  onComplete = (result, error) => {}
+) {
+  const url = `http://localhost:3000/fibonacci/${n}`;
+  const response = await fetch(url);
 
-    return function fibonacciRecursive(n){
-        if(resultsCache.length>n)
-            return resultsCache[n]
+  let data;
 
-        if(n <= 1)
-            return n;
-        
-        let sum = fibonacciRecursive(n-1)+fibonacciRecursive(n-2);
-        resultsCache[n]=sum;
-        return sum;
-    }
-})()
+  let serverResult = null;
+  let error = null;
 
-export async function calculateServerSideAsync(n, onComplete){
-    const url = `http://localhost:3000/fibonacci/${n}`
-    let response = await fetch(url);
-
-    let data;
-
-    let serverResult;
-    let error = null;
-
-    if(!response.ok)
-    {
-        data = await response.text();
-        serverResult = n;
-        error = data;
-    }
-    else{
-        data = await response.json();
-        serverResult = data["result"];
-    }
-    onComplete(serverResult,error);
-}
-export function calculateServerSide(n, onComplete){
-    
-    const url = `http://localhost:3000/fibonacci/${n}`
-    let isResponseText = false;
-
-    fetch(url)
-    .then(response => {
-      if(!response.ok)
-      {
-          isResponseText = true;
-          return response.text();
-      }
-      return response.json()})
-    .then(data =>{
-        let serverResult;
-        let error = null;
-        if(isResponseText){
-
-            serverResult = null;
-            error = data;
-        }
-            
-        else  
-            serverResult = data["result"];
-
-        onComplete(serverResult,error);
-    });
+  if (!response.ok) {
+    data = await response.text();
+    error = data;
+  } else {
+    data = await response.json();
+    serverResult = data["result"];
+  }
+  onComplete(serverResult, error);
 }
