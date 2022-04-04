@@ -23,13 +23,13 @@ function submitInput(e) {
     fibonacciResultDisplay.showSpinner();
     fibonacciCalculation.calculateServerSideAsync(
       userInput,
-      calculateFibonacciComplete
+      calculateFibonacciAtServerComplete
     );
   } else {
     let success = validateInput(userInput);
     if (!success) return;
     let result = fibonacciCalculation.calculateRecursive(userInput);
-    calculateFibonacciComplete(result);
+    fibonacciResultDisplay.updateDisplay(result);
   }
 }
 function validateInput(userInput) {
@@ -43,7 +43,7 @@ function validateInput(userInput) {
   }
   return true;
 }
-function calculateFibonacciComplete(result, error) {
+function calculateFibonacciAtServerComplete(result, error) {
   fibonacciResultDisplay.updateDisplay(result, error);
   if (!error) fibonacciResultsDisplay.refreshDisplay();
 }
