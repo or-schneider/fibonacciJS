@@ -1,5 +1,5 @@
 {
-  "name": "js-01-fibonacci-or-schneider",
+  "name": "fibonaccijs",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/israeltechchallenge/js-01-fibonacci-or-schneider.git"
+    "url": "git+https://github.com/or-schneider/fibonacciJS"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/israeltechchallenge/js-01-fibonacci-or-schneider/issues"
+    "url": "https://github.com/or-schneider/fibonacciJS/issues"
   },
-  "homepage": "https://github.com/israeltechchallenge/js-01-fibonacci-or-schneider#readme",
+  "homepage": "https://github.com/or-schneider/fibonacciJS#readme",
   "dependencies": {
     "express": "^4.17.1"
   }

@@ -1,29 +1,26 @@
-# js-01-fibonacci-or-schneider
-js-01-fibonacci-or-schneider created by GitHub Classroom
 
 ## Installation
-### Install api server
+### Install client server
+```
+npm install
+```
+### Install fibonacci api server
 1) Get fibonacci server submodule
 ```
 git submodule update --init --recursive
 ```
-2) Install fibonacci server dependencies using npm
+1) Install fibonacci server dependencies
 ```
 cd fibonacciServer
 npm install
 ```
-### Site server
-from the root directory:
-```
-npm install
-```
 ## Usage
-Open a terminal and run api server
+Run fibonacci api server
 ```
 cd fibonacciServer
 node app.js
 ```
-Open another terminal and run the site's server
+Run client server
 ```
 node app.js
 ```
@@ -31,7 +28,7 @@ Or use git-bash terminal and run both at the same time
 ```
 node fibonacciServer/app.js & node app.js
 ```
-Enter site at:
+Enter client at:
 ```
 localhost:8080
 ```

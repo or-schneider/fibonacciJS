@@ -1,0 +1,1 @@
+npm install && cd fibonacciServer && npm install
