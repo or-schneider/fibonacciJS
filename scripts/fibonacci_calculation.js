@@ -33,19 +33,24 @@ export async function calculateServerSideAsync(
   onComplete = (result, error) => {}
 ) {
   const url = `http://localhost:3000/fibonacci/${n}`;
-  const response = await fetch(url);
 
-  let data;
-
+  let serverError = null;
   let serverResult = null;
-  let error = null;
 
-  if (!response.ok) {
-    data = await response.text();
-    error = data;
-  } else {
-    data = await response.json();
-    serverResult = data["result"];
+  try {
+    const response = await fetch(url);
+
+    let data;
+
+    if (!response.ok) {
+      data = await response.text();
+      serverError = data;
+    } else {
+      data = await response.json();
+      serverResult = data["result"];
+    }
+  } catch (error) {
+    serverError = error.message;
   }
-  onComplete(serverResult, error);
+  onComplete(serverResult, serverError);
 }

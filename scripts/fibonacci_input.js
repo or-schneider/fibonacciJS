@@ -1,6 +1,7 @@
 import * as fibonacciCalculation from "./fibonacci_calculation.js";
 import * as fibonacciResultDisplay from "./fibonacci_result_display.js";
 import * as fibonacciResultsDisplay from "./fibonacci_results_display.js";
+
 const inputMax = 50;
 const inputMin = 1;
 
@@ -76,4 +77,4 @@ function showFibonacciInputError() {
 function init() {
   inputButton.addEventListener("click", submitInput);
 }
-init();
+export default { init };

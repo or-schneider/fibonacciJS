@@ -11,6 +11,10 @@ const resultsListDisplay = document.getElementById("resultsList");
 export async function refreshDisplay() {
   showSpinner();
   const results = await fetchResultsAsync();
+  if (results.error) {
+    spinnerEnabler.hideSpinner(resultsSpinner);
+    return;
+  }
   newestResultsData = results;
 
   generateDisplay(results);
@@ -140,4 +144,4 @@ function init() {
   initSortButton();
 }
 
-init();
+export default { init };

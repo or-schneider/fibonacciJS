@@ -1,14 +1,18 @@
 # Fibonacci calculator JS
 
 Vanilla JavaScript implementation of a Fibonacci calculator  
+
+Calculate fibonacci numbers, save said calculations, and sort them out!  
+
 Based on a Figma design by Itc  
 Built for js, bootstrap practice and to serve as a future reference  
-##
+
+#### Notes
 Js has an import system!  
 Bootstrap mobile first is an interesting approach  
-Have support for a mobile screen going the bootstrap way  
-Taking a stab at git submodules, with the fibonnaci server api being a submodule  
-##
+This project has support for a mobile screen going the bootstrap way  
+Taking a stab at git submodules, with the fibonacci server api being a submodule  
+#
 
 ## Installation
 ### Install client server
