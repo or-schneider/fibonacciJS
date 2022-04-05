@@ -1,3 +1,14 @@
+# Fibonacci calculator JS
+
+Vanilla JavaScript implementation of a Fibonacci calculator  
+Based on a Figma design by Itc  
+Built for js, bootstrap practice and to serve as a future reference  
+##
+Js has an import system!  
+Bootstrap mobile first is an interesting approach  
+Have support for a mobile screen going the bootstrap way  
+Taking a stab at git submodules, with the fibonnaci server api being a submodule  
+##
 
 ## Installation
 ### Install client server
@@ -32,3 +43,5 @@ Enter client at:
 ```
 localhost:8080
 ```
+### Preview
+https://user-images.githubusercontent.com/90090260/161656152-2b2db418-367a-4564-a2db-6ac5432a1b6c.mp4
